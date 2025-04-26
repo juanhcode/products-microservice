@@ -15,7 +15,7 @@ spec:
         app: products-microservice
     spec:
       containers:
-        - name: notifications-microservice
+        - name: products-microservice
           image: juanhoyos/microservice:products-v2
           ports:
             - containerPort: 8083
