@@ -44,4 +44,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update image tag"
-          branch: develop  # O main según el entorno
+          branch: develop  # O main según el entorno.
