@@ -7,7 +7,7 @@ on:
 
 
 env:
-  IMAGE_NAME: juanhoyos/microservice:products-v1 # user de dockerhub
+  IMAGE_NAME: juanhoyos/microservice:products-v2 # user de dockerhub
   REGISTRY: docker.io
 
 jobs:
@@ -44,5 +44,5 @@ jobs:
       - name: Subir cambios a repositorio GitOps
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Update image tag"
+          commit_message: "Update image reference to latest deployment"
           branch: develop  # O main según el entorno.
