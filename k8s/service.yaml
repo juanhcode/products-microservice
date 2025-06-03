@@ -7,6 +7,6 @@ spec:
     app: product-microservice
   ports:
     - protocol: TCP
-      port: 8083
-      targetPort: 8083
-  #type: ClusterIP
+      port: 8086
+      targetPort: 8086
+  type: ClusterIP

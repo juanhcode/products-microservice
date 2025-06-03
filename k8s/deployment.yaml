@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
         - name: products-microservice
-          image: juanhoyos/microservice:products-v2
+          image: juanhoyos/microservice:products-v3
           ports:
-            - containerPort: 8083
+            - containerPort: 8086
           env:
             - name: SERVER_PORT
-              value: "8083"
+              value: "8086"
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:
