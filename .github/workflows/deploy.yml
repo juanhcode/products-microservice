@@ -6,7 +6,7 @@ on:
       - develop
 
 env:
-  IMAGE_NAME: juanhoyos/microservice:products-v4 # user de dockerhub
+  IMAGE_NAME: juanhoyos/microservice:products-v5 # user de dockerhub
   REGISTRY: docker.io
 
 jobs:
