@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: products-microservice
-          image: juanhoyos/microservice:products-v3
+          image: juanhoyos/microservice:products-v4
           ports:
             - containerPort: 8086
           env:
