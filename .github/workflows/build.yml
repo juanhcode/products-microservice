@@ -38,3 +38,5 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_PROJECT_KEY: juanhcode_products-microservice  #mejorar esta parte
+          SONAR_ORGANIZATION: juanhcode
