@@ -3,12 +3,12 @@ name: Deploy Spring Boot Microservice
 on:
   workflow_run:  # esto se ejecuta cuando el build, finaliza OK
     workflows: "SonarQube"
-    types: completed
+    types: [completed]
     branches: develop
 
 
 env:
-  IMAGE_NAME: juanhoyos/microservice:products-v7 # user de dockerhub
+  IMAGE_NAME: juanhoyos/microservice:products-v8 # user de dockerhub
   REGISTRY: docker.io
 
 jobs:
