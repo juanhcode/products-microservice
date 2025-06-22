@@ -40,17 +40,17 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: aws-credentials
+                  name: credentials
                   key: accessKeyId
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: aws-credentials
+                  name: credentials
                   key: secretAccessKey
             - name: AWS_S3_BUCKET
               valueFrom:
                 configMapKeyRef:
-                  name: app-config
+                  name: credentials
                   key: s3Bucket
           resources:
             limits:
