@@ -1,19 +1,16 @@
 name: Deploy Spring Boot Microservice
 
 on:
-  workflow_run:  # esto se ejecuta cuando el build, finaliza OK
-    workflows: "SonarQube"
-    types: [completed]
-    branches: develop
-
+  push:
+    branches:
+      - main
 
 env:
-  IMAGE_NAME: juanhoyos/microservice:products-v8 # user de dockerhub
+  IMAGE_NAME: juanhoyos/microservice:products-v9
   REGISTRY: docker.io
 
 jobs:
-  deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Solo si el sonar paso correctamente
+  build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout código
@@ -34,12 +31,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Construir y etiquetar imagen
+      - name: Construir y subir imagen a Docker Hub
         run: |
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
 
-      - name: Actualizar manifiestos de Kubernetes
+      - name: Actualizar manifiesto de Kubernetes
         run: |
           sed -i "s|image: .*|image: $IMAGE_NAME|" k8s/deployment.yaml
 
@@ -47,4 +44,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update image reference to latest deployment"
-          branch: develop  # O main según el entorno.
+          branch: main  # O develop según el entorno
