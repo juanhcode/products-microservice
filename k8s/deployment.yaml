@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: products-microservice
-          image: juanhoyos/microservice:products-v10
+          image: juanhoyos/microservice:products-v11
           ports:
             - containerPort: 8086
           env:
@@ -41,17 +41,22 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: credentials
-                  key: accessKeyId
+                  key: awsS3AccessKey
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
                   name: credentials
-                  key: secretAccessKey
+                  key: awsS3SecretAccessKey
             - name: AWS_S3_BUCKET
               valueFrom:
                 configMapKeyRef:
                   name: credentials
-                  key: s3Bucket
+                  key: awsS3Bucket
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: credentials
+                  key: awsS3Region
           resources:
             limits:
               memory: "256Mi"
