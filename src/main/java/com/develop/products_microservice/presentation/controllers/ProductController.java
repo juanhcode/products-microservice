@@ -45,12 +45,18 @@ public class ProductController {
         return ResponseEntity.ok(saved);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductResponseDTO> updateProduct(@PathVariable Long id,
-                                                            @RequestBody ProductRequestDTO productRequestDTO) {
-        ProductResponseDTO updatedProduct = productService.updateProduct(id, productRequestDTO);
+                                                            @RequestPart("product") ProductRequestDTO productRequestDTO,
+                                                            @RequestPart(value = "file", required = false) MultipartFile file) throws IOException {
+        String photoUrl = null;
+        if (file != null && !file.isEmpty()) {
+            photoUrl = s3Service.uploadFile(file);
+        }
+        ProductResponseDTO updatedProduct = productService.updateProduct(id, productRequestDTO, photoUrl);
         return ResponseEntity.ok(updatedProduct);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {

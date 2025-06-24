@@ -10,6 +10,6 @@ public interface ProductService {
     List<ProductResponseDTO> getAllProducts();
     ProductResponseDTO getProductById(Long id);
     ProductResponseDTO createProduct(ProductRequestDTO productRequestDTO, String photoUrl);
-    ProductResponseDTO updateProduct(Long id, ProductRequestDTO productRequestDTO);
+    ProductResponseDTO updateProduct(Long id, ProductRequestDTO productRequestDTO, String photoUrl);
     void deleteProduct(Long id);
 }

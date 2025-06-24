@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponseDTO updateProduct(Long id, ProductRequestDTO productRequestDTO) {
+    public ProductResponseDTO updateProduct(Long id, ProductRequestDTO productRequestDTO, String photoUrl) {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
 
@@ -56,9 +56,15 @@ public class ProductServiceImpl implements ProductService {
         existingProduct.setDescription(productRequestDTO.getDescription());
         existingProduct.setUnitPrice(productRequestDTO.getUnitPrice());
         existingProduct.setQuantity(productRequestDTO.getQuantity());
+
+        if (photoUrl != null) {
+            existingProduct.setImageUrl(photoUrl); // Asegúrate de tener este campo en tu entidad
+        }
+
         Product updatedProduct = productRepository.save(existingProduct);
         return ProductMapper.toProductResponseDTO(updatedProduct);
     }
+
 
 
     @Override
