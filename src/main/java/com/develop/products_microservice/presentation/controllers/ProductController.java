@@ -4,6 +4,7 @@ import com.develop.products_microservice.application.dtos.ProductRequestDTO;
 import com.develop.products_microservice.application.dtos.ProductResponseDTO;
 import com.develop.products_microservice.application.use_cases.ProductServiceImpl;
 import com.develop.products_microservice.domain.interfaces.S3Service;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +37,7 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ProductResponseDTO> register(@RequestPart("product") ProductRequestDTO product,
                                                        @RequestPart("file") MultipartFile file) throws IOException {
         String photoUrl = s3Service.uploadFile(file);
