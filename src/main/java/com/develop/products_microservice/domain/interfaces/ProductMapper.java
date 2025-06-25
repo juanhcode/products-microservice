@@ -24,14 +24,6 @@ public class ProductMapper {
         return product;
     }
 
-    public static void updateProduct(Product product, ProductRequestDTO request, Category category) {
-        product.setName(request.getName());
-        product.setQuantity(request.getQuantity());
-        product.setUnitPrice(request.getUnitPrice());
-        product.setDescription(request.getDescription());
-        product.setCategory(category);
-    }
-
     public static ProductResponseDTO toProductResponseDTO(Product product) {
         ProductResponseDTO dto = new ProductResponseDTO();
         dto.setCode(product.getCode());
